@@ -171,3 +171,77 @@
 @media(max-width:850px) { .site-nav { display:none; }.hero { min-height:700px; }.hero-photo { background-position:60% center; }.hero-shade { background:linear-gradient(90deg,rgba(9,34,39,.82),rgba(9,34,39,.22)); }.intro-section { grid-template-columns:1fr; gap:32px; padding-top:90px; padding-bottom:95px; }.coverage-grid { grid-template-columns:1fr 1fr; }.feature-section { grid-template-columns:1fr; }.feature-visual { height:440px; }.site-footer { flex-wrap:wrap; } }
 @media(max-width:600px) { .site-header { height:70px; }.site-logo { font-size:25px; }.site-logo-mark { width:27px; height:27px; }.header-login { display:none; }.header-cta { padding:11px 14px; }.hero { min-height:690px; align-items:end; }.hero-content { padding-bottom:125px; }.hero h1 { font-size:clamp(53px,13vw,75px); }.hero-content>p { font-size:15px; }.hero-buttons { align-items:flex-start; flex-direction:column; gap:22px; }.hero-caption { bottom:25px; }.section-heading,.closing-section { display:block; }.section-heading>p { margin-top:25px; }.coverage-grid { grid-template-columns:1fr; }.cover-card { min-height:250px; }.feature-section { padding-top:90px; padding-bottom:95px; }.feature-visual { height:350px; }.feature-orbit { width:280px; height:280px; }.orbit-two { width:440px; height:440px; }.feature-center { width:180px; height:180px; font-size:17px; }.feature-chip { font-size:10px; padding:9px 12px; }.closing-section { padding-top:75px; padding-bottom:80px; }.closing-section>div { width:100%; }.closing-section>div:last-child { margin-top:30px; }.site-footer { display:grid; grid-template-columns:1fr 1fr; }.site-footer>div { margin-left:0; }.site-footer>span { margin-left:0; } }
 @media(prefers-reduced-motion:reduce) { .marketing *, .marketing *::before, .marketing *::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+
+/* Quiet visual details for the editorial sections */
+.intro-main { position:relative; isolation:isolate; }
+.intro-main > :not(.intro-watermark) { position:relative; z-index:1; }
+.intro-watermark { position:absolute; width:330px; height:330px; right:-85px; top:-80px; color:#dce7dc; opacity:.52; z-index:-1; transform:rotate(-14deg); pointer-events:none; }
+.cover-card { position:relative; overflow:hidden; isolation:isolate; }
+.cover-card > :not(.cover-watermark) { position:relative; z-index:1; }
+.cover-watermark { position:absolute; width:225px; height:225px; right:-20px; top:48px; color:#183936; opacity:.09; transform:rotate(-12deg); pointer-events:none; }
+.feature-visual { background:linear-gradient(0deg,rgba(17,52,50,.58),rgba(17,52,50,.24)),url('/solace-coast.png') 61% center/cover; }
+.feature-orbit { border-color:rgba(255,255,255,.44); }
+.feature-center { background:#f7f5ef; }
+.feature-chip { background:#f7f5ef; }
+.closing-section { position:relative; isolation:isolate; overflow:hidden; }
+.closing-section::after { content:""; position:absolute; width:480px; height:480px; right:-100px; top:-250px; border:1px solid rgba(107,56,47,.23); border-radius:50%; box-shadow:0 0 0 70px rgba(255,255,255,.07),0 0 0 145px rgba(255,255,255,.05); z-index:-1; pointer-events:none; }
+.site-footer { max-width:none; display:block; background:#183936; color:#d5e2db; padding:75px max(clamp(24px,7vw,112px),calc((100vw - 1216px)/2)) 28px; }
+.site-footer .site-logo { color:#fff; font-size:32px; }
+.footer-top { display:flex; justify-content:space-between; align-items:start; gap:60px; padding-bottom:85px; }
+.footer-brand p { margin-top:24px; line-height:1.8; font-size:14px; color:#b7cbc0; }
+.footer-nav { display:flex; gap:clamp(50px,8vw,150px); }
+.footer-nav > div { display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
+.footer-nav strong { color:#fff; font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+.site-footer .footer-nav a { color:#c7d8ce; font-size:14px; font-weight:500; transition:color .2s; }
+.site-footer .footer-nav a:hover,.footer-bottom a:hover { color:#f2a48c; }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; border-top:1px solid #ffffff30; padding-top:25px; font-size:12px; color:#a9c1b5; }
+.footer-bottom a { color:#d5e2db; font-weight:650; }
+@media(max-width:600px) { .intro-watermark { width:220px; height:220px; right:-55px; top:10px; }.cover-watermark { width:180px; height:180px; }.footer-top { display:block; padding-bottom:65px; }.footer-nav { margin-top:50px; gap:55px; }.footer-bottom { align-items:flex-start; gap:20px; flex-direction:column; } }
+
+/* Image-led section refinements */
+.hero-line { gap:15px; letter-spacing:.13em; }
+.hero-line-rule { width:32px; height:1px; background:#f2a48c; flex:none; }
+.intro-section { grid-template-columns:minmax(220px,.72fr) minmax(0,2fr); align-items:center; gap:9%; }
+.intro-side { display:block; padding-top:0; }
+.intro-side-label { display:flex; gap:16px; align-items:center; }
+.intro-photo { width:100%; height:310px; margin-top:34px; border-radius:130px 130px 12px 12px; background:url('/coverage-triptych.png') 50% center/300% 100% no-repeat; }
+.intro-side>p { font:italic 18px Georgia,serif; color:#789186; margin-top:16px; }
+.intro-watermark { opacity:.28; }
+.cover-card { min-height:420px; padding:0; justify-content:initial; }
+.cover-photo { height:60%; min-height:245px; width:100%; background-image:url('/coverage-triptych.png'); background-repeat:no-repeat; background-size:300% auto; }
+.cover-coral .cover-photo { background-position:left center; }
+.cover-mint .cover-photo { background-position:center center; }
+.cover-sand .cover-photo { background-position:right center; }
+.cover-top { position:absolute!important; inset:20px 22px auto; color:#fff; filter:drop-shadow(0 2px 6px #173b3977); }
+.cover-copy { padding:22px 28px 27px; margin-top:auto; }
+.cover-watermark { width:160px; height:160px; right:-12px; top:auto; bottom:-42px; opacity:.07; }
+.feature-visual { background:linear-gradient(0deg,rgba(17,52,50,.5),rgba(17,52,50,.12)),url('/solace-desk.png') center center/cover; }
+@media(max-width:850px) { .intro-section { grid-template-columns:1fr; }.intro-side { display:flex; align-items:center; gap:30px; }.intro-photo { width:175px; height:180px; margin:0; border-radius:100px 100px 12px 12px; }.intro-side>p { display:none; } }
+@media(max-width:600px) { .intro-side { justify-content:space-between; }.intro-photo { width:135px; height:150px; }.cover-card { min-height:380px; }.cover-photo { min-height:225px; } }
+
+/* Solace promise: one composed editorial image and a focused message */
+.intro-section { grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr); gap:clamp(48px,8vw,120px); align-items:center; padding-top:110px; padding-bottom:110px; }
+.intro-media { min-height:520px; position:relative; border-radius:14px; overflow:hidden; background:url('/coverage-triptych.png') center center/auto 100% no-repeat; }
+.intro-media::after { content:""; position:absolute; inset:50% 0 0; background:linear-gradient(transparent,rgba(12,43,40,.65)); pointer-events:none; }
+.intro-media-caption { position:absolute; left:32px; right:32px; bottom:30px; z-index:1; display:flex; align-items:end; justify-content:space-between; color:#fff; font:italic clamp(23px,2.5vw,35px)/1.16 Georgia,serif; letter-spacing:-.03em; }
+.intro-main { isolation:auto; }
+.intro-main h2 { max-width:620px; font-size:clamp(52px,5.4vw,78px); line-height:1.06; }
+.intro-main h2 em { color:#82998d; }
+.intro-main>p { max-width:500px; margin-top:32px; font-size:17px; line-height:1.8; }
+.intro-benefits { display:flex; flex-direction:column; gap:15px; padding-top:28px; border-top:1px solid #d5ded4; margin-top:34px; }
+.intro-benefits>div { display:flex; gap:13px; align-items:center; color:#294d43; font-size:14px; font-weight:700; }
+.intro-benefits svg { flex:none; color:#c76d54; }
+@media(max-width:850px) { .intro-section { grid-template-columns:1fr 1fr; gap:40px; }.intro-media { min-height:430px; }.intro-main h2 { font-size:clamp(43px,6vw,62px); } }
+@media(max-width:600px) { .intro-section { grid-template-columns:1fr; padding-top:75px; padding-bottom:85px; gap:37px; }.intro-media { min-height:390px; }.intro-main h2 { font-size:clamp(48px,11vw,64px); }.intro-main>p { font-size:16px; margin-top:24px; }.intro-benefits { margin-top:26px; } }
+
+/* A cinematic pause between the hero and coverage catalog */
+.intro-section { display:block; padding-top:112px; padding-bottom:112px; }
+.intro-heading { max-width:860px; margin:0 auto 54px; text-align:center; }
+.intro-heading h2 { color:#183936; font:600 clamp(50px,5.8vw,84px)/1.04 Georgia,serif; letter-spacing:-.045em; }
+.intro-heading h2 em { color:#81998c; font-weight:400; }
+.intro-heading p { max-width:630px; margin:26px auto 0; color:#60746d; font-size:17px; line-height:1.75; }
+.intro-panorama { height:clamp(330px,39vw,550px); position:relative; overflow:hidden; border-radius:14px; background:url('/solace-family.png') center 53%/cover no-repeat; }
+.intro-panorama::after { content:""; position:absolute; inset:50% 0 0; background:linear-gradient(transparent,rgba(10,39,34,.44)); pointer-events:none; }
+.intro-panorama-label { position:absolute; right:25px; bottom:24px; z-index:1; display:flex; align-items:center; gap:22px; padding:15px 18px 15px 22px; border-radius:100px; color:#183936; background:#f8f5ee; font-size:13px; font-weight:750; box-shadow:0 8px 28px #14392c35; }
+.intro-footnote { display:flex; justify-content:space-between; gap:24px; padding-top:22px; color:#62786e; font-size:12px; font-weight:650; letter-spacing:.03em; }
+@media(max-width:600px) { .intro-section { padding-top:76px; padding-bottom:80px; }.intro-heading { margin-bottom:34px; }.intro-heading h2 { font-size:clamp(43px,11vw,60px); }.intro-heading p { font-size:15px; }.intro-panorama { height:390px; background-position:60% center; }.intro-panorama-label { left:16px; right:16px; bottom:16px; justify-content:space-between; }.intro-footnote { flex-direction:column; gap:7px; font-size:11px; } }

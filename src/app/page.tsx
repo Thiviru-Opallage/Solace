@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, CarFront, HeartPulse, House, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CarFront, HeartPulse, House, ShieldCheck } from "lucide-react";
 
 const covers = [
   { icon: CarFront, name: "Motor", detail: "For every road ahead.", tone: "coral" },
@@ -15,7 +15,7 @@ export default function HomePage() {
         <nav className="site-nav" aria-label="Main navigation">
           <a href="#coverage">Coverage</a><a href="#experience">Why Solace</a><a href="#how-it-works">How it works</a>
         </nav>
-        <div className="site-actions"><Link href="/login" className="header-login">Log in</Link><Link href="/register" className="header-cta">Get started <ArrowUpRight size={16} /></Link></div>
+        <div className="site-actions"><Link href="/register" className="header-cta">Get started <ArrowUpRight size={16} /></Link></div>
       </header>
 
       <main>
@@ -23,7 +23,7 @@ export default function HomePage() {
           <div className="hero-photo" role="img" aria-label="Sunlit coastal home overlooking the ocean" />
           <div className="hero-shade" />
           <div className="hero-content">
-            <div className="hero-line"><span className="hero-line-dot" /> Insurance for the life you&apos;re building</div>
+            <div className="hero-line"><span className="hero-line-rule" /> Made for the life you&apos;re building</div>
             <h1>Peace of mind<br />looks good on you<span>.</span></h1>
             <p>More than a policy. A simpler, more human way to protect what makes your life yours.</p>
             <div className="hero-buttons"><Link href="/register" className="button-light">Explore your coverage <ArrowUpRight size={18} /></Link><a href="#experience" className="button-text">Get to know us <ArrowRight size={18} /></a></div>
@@ -32,13 +32,19 @@ export default function HomePage() {
         </section>
 
         <section className="intro-section" id="experience">
-          <div className="intro-side"><span className="mini-sun"><Sparkles size={20} /></span><span>Feel covered.<br />Live fully.</span></div>
-          <div className="intro-main"><h2>The best protection is the kind that lets you <em>forget it&apos;s there.</em></h2><p>Insurance should make room for living. Solace brings your coverage, claims, and next steps into one clear place, so you can get back to what matters.</p></div>
+          <div className="intro-heading">
+            <h2>Life is for <em>living.</em><br />We&apos;ll look after the rest.</h2>
+            <p>Good protection gives you the freedom to be present. Solace keeps your coverage, claims, and next steps clear, so the moments that matter stay in focus.</p>
+          </div>
+          <div className="intro-panorama" role="img" aria-label="A family enjoying time together at home">
+            <div className="intro-panorama-label">For all the moments worth protecting <ArrowUpRight size={19} aria-hidden="true" /></div>
+          </div>
+          <div className="intro-footnote"><span>Protection that moves with you</span><span>Clear cover · Confident claims · More living</span></div>
         </section>
 
         <section className="coverage-section" id="coverage">
           <div className="section-heading"><div><p className="section-note">Made for what matters</p><h2>Life has layers.<br /><em>We&apos;ve got them covered.</em></h2></div><p>From your first car to the place you call home, find thoughtful protection that moves with you.</p></div>
-          <div className="coverage-grid">{covers.map(({ icon: Icon, name, detail, tone }) => <Link href="/register" className={`cover-card cover-${tone}`} key={name}><div className="cover-top"><Icon size={32} strokeWidth={1.5} /><ArrowUpRight size={22} strokeWidth={1.5} /></div><div><h3>{name} insurance</h3><p>{detail}</p></div></Link>)}</div>
+          <div className="coverage-grid">{covers.map(({ icon: Icon, name, detail, tone }) => <Link href="/register" className={`cover-card cover-${tone}`} key={name}><div className="cover-photo" aria-hidden="true" /><Icon className="cover-watermark" aria-hidden="true" strokeWidth={0.7} /><div className="cover-top"><Icon size={32} strokeWidth={1.5} /><ArrowUpRight size={22} strokeWidth={1.5} /></div><div className="cover-copy"><h3>{name} insurance</h3><p>{detail}</p></div></Link>)}</div>
         </section>
 
         <section className="feature-section" id="how-it-works">
@@ -48,7 +54,7 @@ export default function HomePage() {
 
         <section className="closing-section"><div><p className="section-note">A little more certainty</p><h2>Make room for<br /><em>what&apos;s next.</em></h2></div><div><p>Good things happen when you feel ready for anything. Let&apos;s make that feeling yours.</p><Link href="/register" className="button-dark">Get started today <ArrowUpRight size={18} /></Link></div></section>
       </main>
-      <footer className="site-footer"><Link href="/" className="site-logo">solace<span className="site-logo-dot">.</span></Link><p>Insurance, quietly handled.</p><div><Link href="/login">Log in</Link><Link href="/register">Create account</Link></div><span>© {new Date().getFullYear()} Solace</span></footer>
+      <footer className="site-footer"><div className="footer-top"><div className="footer-brand"><Link href="/" className="site-logo">solace<span className="site-logo-dot">.</span></Link><p>Insurance, quietly handled.<br />A clearer way to care for what matters.</p></div><div className="footer-nav"><div><strong>Explore</strong><a href="#coverage">Coverage</a><a href="#experience">Why Solace</a><a href="#how-it-works">How it works</a></div><div><strong>Your account</strong><Link href="/login">Log in</Link></div></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Solace. Thoughtfully made for the moments that matter.</span><a href="#" aria-label="Back to top">Back to top ↑</a></div></footer>
     </div>
   );
 }
