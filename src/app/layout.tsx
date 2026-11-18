@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Solace | Insurance, quietly handled.",
@@ -23,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} h-full antialiased`}>
+    <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col font-sans bg-[#F8F9FB] text-slate-800">
         <AuthProvider>
           {children}
