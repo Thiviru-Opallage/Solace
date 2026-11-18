@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solace
 
-## Getting Started
+**Insurance, quietly handled.** Solace is an insurance management application for customers, agents, and claims adjusters. It pairs a Next.js interface with an Express API and supports policy management, claim processing, payments, and analytics.
 
-First, run the development server:
+## What it includes
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Role | Main capabilities |
+| --- | --- |
+| Customer | View policies, submit and track claims, upload supporting documents, and manage a profile. |
+| Agent | Manage customer policies and view portfolio analytics. |
+| Adjuster | Review claims, record decisions and notes, manage payouts, and view analytics. |
+
+The API includes role-based permissions, policy sharing controls, claim classification and clearance checks, session management, and live claim updates through Server-Sent Events.
+
+## Tech stack
+
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS
+- **Backend:** Node.js, Express 5, TypeScript
+- **Data:** In-memory repositories for development and tests, or MongoDB for persistent storage
+- **Tests:** Vitest and Supertest for the API
+
+## Run locally
+
+Install Node.js and npm. The frontend and backend are separate npm projects, so install dependencies in both directories.
+
+```powershell
+npm ci
+cd server
+npm ci
+Copy-Item .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edit `server/.env` and replace the example values for `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `COOKIE_SECRET`, `CSRF_SECRET`, and `FIELD_ENCRYPTION_KEY` with your own random values. The backend validates its required secrets at startup. The default `REPO_MODE=memory` lets you run the app without MongoDB; data in this mode is lost when the server stops. To use MongoDB, set `REPO_MODE=mongo` and configure `MONGODB_URI`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Start the API from `server`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+npm run dev
+```
 
-## Learn More
+In a second terminal, start the frontend from the repository root:
 
-To learn more about Next.js, take a look at the following resources:
+```powershell
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000). The API listens on port 5000 by default, with a health check at [http://localhost:5000/health](http://localhost:5000/health). The frontend's `/api` requests are proxied to that port through `next.config.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For a local mock-data experience, set `NEXT_PUBLIC_USE_MOCK=true` in a root `.env.local` file before starting the frontend. The backend is still needed for the normal API-backed workflow.
 
-## Deploy on Vercel
+## Common commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Location | Command | Purpose |
+| --- | --- | --- |
+| Repository root | `npm run dev` | Start the frontend |
+| Repository root | `npm run build` | Build the frontend |
+| Repository root | `npm run lint` | Lint the frontend |
+| `server` | `npm run dev` | Start the API with file watching |
+| `server` | `npm test` | Run API tests |
+| `server` | `npm run build` | Compile the API |
+| `server` | `npm run lint` | Lint API source |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The `server` project also has an `npm run seed` command. In MongoDB mode, it clears existing application collections before adding demo data, so use it only with a database intended for that purpose.
+
+## Project structure
+
+```text
+src/app/           Frontend routes and pages
+src/components/    Shared interface components
+src/lib/           API client, configuration, and mock data
+server/src/        Express API, authorization, and repositories
+server/tests/      API integration tests
+server/docs/       API, data model, security, query, and testing guides
+```
+
+## Documentation
+
+- [API reference](server/docs/API.md)
+- [Data model](server/docs/DATA_MODEL.md)
+- [Query guide](server/docs/QUERY_GUIDE.md)
+- [Security documentation](server/docs/SECURITY.md)
+- [Testing guide](server/docs/TESTING.md)
+
+Local environment files and generated output are excluded from Git. Use [`server/.env.example`](server/.env.example) as the starting point for backend configuration.
